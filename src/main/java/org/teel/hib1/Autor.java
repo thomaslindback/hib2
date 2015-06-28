@@ -1,79 +1,70 @@
 package org.teel.hib1;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "teel_author")
 public class Autor {
 
-	@Id
-	@GeneratedValue
-	private Long id;
-	private String name;
-	@ManyToOne
-	@JoinColumn(name="book_id", nullable=false)
-	private Book book;
-	
-	@OneToMany(targetEntity=Handelse.class, cascade=CascadeType.ALL, mappedBy="author")
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<Handelse> handelser;
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String name;
+    @ManyToOne
+    @JoinColumn(name = "book_id", nullable = false)
+    private Book book;
 
-	
-	public Autor() {
-	}
+    @OneToMany(targetEntity = Handelse.class, cascade = CascadeType.ALL, mappedBy = "author")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Handelse> handelser;
 
-	public Autor(String name, Book book) {
-		this.name = name;
-		this.book = book;
-	}
 
-	public Long getId() {
-		return id;
-	}
+    public Autor() {
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Autor(String name, Book book) {
+        this.name = name;
+        this.book = book;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Book getBook() {
-		return book;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setBook(Book book) {
-		this.book = book;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public List<Handelse> getHandelser() {
-		if(handelser == null) {
-			handelser = new ArrayList<>();
-		}
-		return handelser;
-	}
+    public Book getBook() {
+        return book;
+    }
 
-	public void setHandelser(List<Handelse> handelser) {
-		this.handelser = handelser;
-	}
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public List<Handelse> getHandelser() {
+        if (handelser == null) {
+            handelser = new ArrayList<>();
+        }
+        return handelser;
+    }
+
+    public void setHandelser(List<Handelse> handelser) {
+        this.handelser = handelser;
+    }
 
 }
