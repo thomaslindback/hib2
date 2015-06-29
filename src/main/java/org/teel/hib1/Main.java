@@ -40,8 +40,13 @@ public class Main {
         Handelse hand = new Handelse();
         hand.setDescription("A handelse");
 
+        Handelse handelse2 = new Handelse();
+        handelse2.setDescription("Handelse 3");
+
         Autor author1 = new Autor("Thomas", book);
         author1.getHandelser().add(hand);
+        author1.getHandelser().add(handelse2);
+        handelse2.setAuthor(author1);
         book.getAutors().add(author1);
         book.getAutors().add(new Autor("Khanitta", book));
 
@@ -49,14 +54,16 @@ public class Main {
         book.setPlot(p1);
 
         book.getHandelser().add(hand);
+        //book.getHandelser().add(handelse2);
         hand.setAuthor(author1);
         hand.setBook(book);
+        //handelse2.setBook(book);
 
         entityManager.flush();
         entityManager.persist(book);
         p1.setBook(book);
         entityManager.persist(p1);
-
+        entityManager.flush();
         entityManager.getTransaction().commit();
     }
 
@@ -74,7 +81,7 @@ public class Main {
 
     public void run2() {
         entityManager.getTransaction().begin();
-        List<Book> results = entityManager.createQuery("select b from Book b join b.handelser h join b.autors a", Book.class)
+        List<Book> results = entityManager.createQuery("select b from Book b", Book.class)
                 .getResultList();
         for (Book b : results) {
             entityManager.detach(b);
@@ -91,6 +98,11 @@ public class Main {
             }
         }
 
+        List<Handelse> res = entityManager.createQuery("select h from Handelse h", Handelse.class).getResultList();
+        for (Handelse h : res) {
+            System.out.println(h);
+            System.out.println(h.getAuthor().getName());
+        }
         StringWriter sw = new StringWriter();
         JAXBContext jaxbContext = null;
         try {
@@ -106,25 +118,6 @@ public class Main {
         // unmarsal
         try {
             Unmarshaller u = jaxbContext.createUnmarshaller();
-            /*u.setListener(new Unmarshaller.Listener() {
-                @Override
-                public void beforeUnmarshal(Object target, Object parent) {
-                    super.beforeUnmarshal(target, parent);
-                }
-
-                @Override
-                public void afterUnmarshal(Object target, Object parent) {
-                    if(target instanceof  Handelse) {
-                        if(parent instanceof Book) {
-                            ((Handelse)target).setBook((Book)parent);
-                        }
-                        if(parent instanceof Autor) {
-                            ((Handelse)target).setAuthor((Autor)parent);
-                        }
-                    }
-                    //super.afterUnmarshal(target, parent);
-                }
-            });*/
             Book b = (Book) u.unmarshal(new StringReader(sw.toString()));
             System.out.println(b);
             System.out.println(b.getTitle());
