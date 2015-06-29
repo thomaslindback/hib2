@@ -4,9 +4,16 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "teel_author")
 public class Autor {
@@ -17,11 +24,13 @@ public class Autor {
     private String name;
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
+    @XmlTransient
     private Book book;
 
     @OneToMany(targetEntity = Handelse.class, cascade = CascadeType.ALL, mappedBy = "author")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Handelse> handelser;
+    @XmlTransient
+    private List<Handelse> handelser = new ArrayList<>();
 
 
     public Autor() {
@@ -30,6 +39,13 @@ public class Autor {
     public Autor(String name, Book book) {
         this.name = name;
         this.book = book;
+    }
+
+    public void afterUnmarshal(Unmarshaller u, Object parent) {
+        if (parent instanceof Book)
+            this.book = (Book) parent;
+        if (parent instanceof Handelse)
+            this.handelser.add((Handelse) parent);
     }
 
     public Long getId() {
