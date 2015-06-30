@@ -5,6 +5,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -34,19 +35,17 @@ public class Dok {
 
     @OneToMany(targetEntity = Hand.class, cascade = CascadeType.ALL, mappedBy = "dok")
     @LazyCollection(LazyCollectionOption.FALSE)
-    //@XmlTransient
     private List<Hand> hand = new ArrayList<>();
 
 
     public Dok() {
     }
 
-//    public void afterUnmarshal(Unmarshaller u, Object parent) {
-//        if (parent instanceof Arende)
-//            this.arende = (Arende) parent;
-//        if (parent instanceof Hand)
-//            this.hand.add((Hand) parent);
-//    }
+    public void afterUnmarshal(Unmarshaller u, Object parent) {
+        if (parent instanceof Arende) {
+            this.arende = (Arende) parent;
+        }
+    }
 
     public Long getId() {
         return id;

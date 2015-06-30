@@ -3,6 +3,7 @@ package org.teel.arende;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,14 +32,11 @@ public class Hand {
     @XmlTransient
     private Dok dok;
 
-//    public void afterUnmarshal(Unmarshaller u, Object parent) {
-//        if (parent instanceof Dok) {
-//            this.dok = (Dok) parent;
-//        }
-//        if (parent instanceof Arende) {
-//            this.arende = (Arende) parent;
-//        }
-//    }
+    public void afterUnmarshal(Unmarshaller u, Object parent) {
+        if (parent instanceof Arende) {
+            this.arende = (Arende) parent;
+        }
+    }
 
     public Long getId() {
         return id;

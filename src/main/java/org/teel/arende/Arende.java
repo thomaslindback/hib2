@@ -33,6 +33,15 @@ public class Arende {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Hand> hand = new ArrayList<>();
 
+//    public void afterUnmarshal(Unmarshaller u, Object parent) {
+//        if(parent instanceof Hand) {
+//            hand.add((Hand) parent);
+//        }
+//        if(parent instanceof Dok) {
+//            dok.add((Dok) parent);
+//        }
+//    }
+
     public Arende() {
     }
 

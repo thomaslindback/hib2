@@ -60,12 +60,12 @@ public class AM {
             Arende b = (Arende) u.unmarshal(new StringReader(sw.toString()));
 
             for (Dok dok : b.getDok()) {
-                dok.setArende(b);
+                //dok.setArende(b);
                 dok.getHand().clear();
                 dok.getHand().addAll(b.getHand());
             }
             for (Hand hand : b.getHand()) {
-                hand.setArende(b);
+                //hand.setArende(b);
                 hand.setDok(b.getDok().get(0));
             }
 
