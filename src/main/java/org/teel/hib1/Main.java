@@ -1,14 +1,11 @@
 package org.teel.hib1;
 
-import org.codehaus.jackson.map.ObjectMapper;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.List;
@@ -67,22 +64,12 @@ public class Main {
         entityManager.getTransaction().commit();
     }
 
-    public void pp(Object o) {
-        ObjectMapper objMapper = new ObjectMapper();
-
-        try {
-            String jsonString = objMapper.writeValueAsString(o);
-            System.out.println(jsonString);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public void run2() {
         entityManager.getTransaction().begin();
         List<Book> results = entityManager.createQuery("select b from Book b", Book.class)
                 .getResultList();
+        Book b1 = results.get(0);
         for (Book b : results) {
             entityManager.detach(b);
             System.out.println(b);
