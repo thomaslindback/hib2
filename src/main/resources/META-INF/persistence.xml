@@ -41,4 +41,26 @@
         </properties>
     </persistence-unit>
 
+    <persistence-unit name="Arende2"
+                      transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>org.teel.arende2.Arende</class>
+        <class>org.teel.arende2.Dok</class>
+        <class>org.teel.arende2.Hand</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mybookDB"/>
+            <property name="javax.persistence.jdbc.user" value="thomas"/>
+            <property name="javax.persistence.jdbc.password" value="bambo99"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.c3p0.min_size" value="5"/>
+            <property name="hibernate.c3p0.max_size" value="20"/>
+            <property name="hibernate.c3p0.timeout" value="300"/>
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+            <property name="hibernate.c3p0.idle_test_period" value="3000"/>
+            <property name="hibernate.archive.autodetection" value="false"/>
+        </properties>
+    </persistence-unit>
+
 </persistence>
