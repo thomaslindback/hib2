@@ -27,7 +27,7 @@ public class AM {
         a.setTitle("arende");
         Hand h = new Hand();
         h.setDescription("SKAPAT");
-        h.setXid(Long.toString(Cntr.instance().n()));
+        h.setXid(Long.toString(Cntr.inst().n()));
         a.getHand().add(h);
         return a;
     }
@@ -37,12 +37,12 @@ public class AM {
 
         Hand h = new Hand();
         h.setDescription("NYTT DOK");
-        h.setXid(Long.toString(Cntr.instance().n()));
+        h.setXid(Long.toString(Cntr.inst().n()));
 
         Dok d = new Dok();
         d.setName(dokname);
         d.setDokId(dokid);
-        d.setXid(Long.toString(Cntr.instance().n()));
+        d.setXid(Long.toString(Cntr.inst().n()));
 
         // koppla
         a.getDok().add(d);
@@ -54,7 +54,7 @@ public class AM {
     public void addHandelseToDok(Arende a) {
         Hand h = new Hand();
         h.setDescription("VALIDATED");
-        h.setXid(Long.toString(Cntr.instance().n()));
+        h.setXid(Long.toString(Cntr.inst().n()));
         //h.setRid(Long.toString(System.currentTimeMillis()));
         a.getHand().add(h);
         for (Dok d : a.getDok()) {
@@ -168,11 +168,11 @@ public class AM {
     }
 
     static class Cntr {
-        private static final Cntr inst = new Cntr();
+        private static final Cntr i = new Cntr();
         private static int n = 300;
 
-        public static Cntr instance() {
-            return inst;
+        public static Cntr inst() {
+            return i;
         }
 
         public int n() {

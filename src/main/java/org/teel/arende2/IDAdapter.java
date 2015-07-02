@@ -1,10 +1,3 @@
-/*
- * Copyright (C) 2015 Swedish Customs. All rights reserved.
- *
- * This file is part of Swedish Customs Software.
- * For details on use and redistribution please refer to
- * the LICENSE.txt file included with these sources.
- */
 package org.teel.arende2;
 
 import javax.xml.bind.DatatypeConverter;
@@ -25,7 +18,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  * <p/>
  * [JavaDoc tags]<br>
  *
- * @author $Author: kktlk$
+ * @author $Author: Thomas$
  * @version $Revision: 1 $
  *          </p>
  */
