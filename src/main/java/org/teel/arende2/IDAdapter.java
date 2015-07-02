@@ -4,20 +4,7 @@ import javax.xml.bind.DatatypeConverter;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
- * <p>
- * [Purpose]<br>
- * TODO: Replace this with a short description of the purpose
- * </p>
- * <p>
- * [Summary]<br>
- * TODO: Replace this with a short summary of responsibilities and offerings
- * </p>
- * <p>
- * [Sample code]<br>
- * </p>
- * <p/>
- * [JavaDoc tags]<br>
- *
+
  * @author $Author: Thomas$
  * @version $Revision: 1 $
  *          </p>
