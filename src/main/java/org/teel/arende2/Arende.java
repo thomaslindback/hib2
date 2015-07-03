@@ -30,6 +30,11 @@ public class Arende {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Dok> dok = new ArrayList<>();
 
+    @OneToMany(targetEntity = Bes.class, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "arende_id", referencedColumnName = "id", nullable = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Bes> bes = new ArrayList<>();
+
     @OneToMany(targetEntity = Hand.class, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "arende_id", referencedColumnName = "id", nullable = false)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -56,6 +61,22 @@ public class Arende {
 
     public void setDok(List<Dok> dok) {
         this.dok = dok;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Bes> getBes() {
+        return bes;
+    }
+
+    public void setBes(List<Bes> bes) {
+        this.bes = bes;
     }
 
     public List<Hand> getHand() {

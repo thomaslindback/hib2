@@ -24,6 +24,12 @@ public class Hand {
     @XmlAttribute
     private Dok dok;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bes_id", nullable = true)
+    @XmlIDREF
+    @XmlAttribute
+    private Bes bes;
+
     @XmlID
     @XmlAttribute
     private String xid;
@@ -58,5 +64,13 @@ public class Hand {
 
     public void setXid(String xid) {
         this.xid = xid;
+    }
+
+    public Bes getBes() {
+        return bes;
+    }
+
+    public void setBes(Bes bes) {
+        this.bes = bes;
     }
 }

@@ -33,8 +33,6 @@ public class AM {
     }
 
     public void kopplaDok(Arende a, String dokname, long dokid) {
-        a.setTitle("arende");
-
         Hand h = new Hand();
         h.setDescription("NYTT DOK");
         h.setXid(Long.toString(Cntr.inst().n()));
@@ -51,15 +49,45 @@ public class AM {
         d.getHand().add(h);
     }
 
+    public void kopplaBes(Arende a, String dokname, long dokid) {
+        Hand h = new Hand();
+        h.setDescription("NYTT BES");
+        h.setXid(Long.toString(Cntr.inst().n()));
+
+        Bes b = new Bes();
+        b.setName(dokname);
+        b.setDokId(dokid);
+        b.setXid(Long.toString(Cntr.inst().n()));
+
+        // koppla
+        a.getBes().add(b);
+        a.getHand().add(h);
+        h.setBes(b);
+        b.getHand().add(h);
+    }
+
     public void addHandelseToDok(Arende a) {
         Hand h = new Hand();
-        h.setDescription("VALIDATED");
+        h.setDescription("DOK VALIDATED");
         h.setXid(Long.toString(Cntr.inst().n()));
         //h.setRid(Long.toString(System.currentTimeMillis()));
         a.getHand().add(h);
         for (Dok d : a.getDok()) {
             d.getHand().add(h);
             h.setDok(d);
+            break;
+        }
+    }
+
+    public void addHandelseToBes(Arende a) {
+        Hand h = new Hand();
+        h.setDescription("BES VALIDATED");
+        h.setXid(Long.toString(Cntr.inst().n()));
+        //h.setRid(Long.toString(System.currentTimeMillis()));
+        a.getHand().add(h);
+        for (Bes b : a.getBes()) {
+            b.getHand().add(h);
+            h.setBes(b);
             break;
         }
     }
@@ -113,14 +141,6 @@ public class AM {
 
         Arende a5 = marshalUnmarshal(a4);
 
-        // koppla efter
-        /*for (Dok dok : a5.getDok()) {
-            dok.getHand().clear();
-            dok.getHand().addAll(a5.getHand());
-        }
-        for (Hand hand : a5.getHand()) {
-            hand.setDok(a5.getDok().get(0));
-        }*/
         entityManager.getTransaction().begin();
         entityManager.merge(a5);
         entityManager.getTransaction().commit();
@@ -146,7 +166,21 @@ public class AM {
         entityManager.getTransaction().commit();
         Arende a12 = read();
         System.out.println(a12);
+
+        Arende a13 = marshalUnmarshal(a12);
+
+        kopplaBes(a13, "bes1", 33322L);
+
+        Arende a14 = marshalUnmarshal(a13);
+
+        entityManager.getTransaction().begin();
+        entityManager.merge(a14);
+        entityManager.getTransaction().commit();
+
+        Arende a15 = read();
+        System.out.println(a15);
     }
+
 
     public void init() {
         entityManagerFactory = Persistence.createEntityManagerFactory("Arende2");

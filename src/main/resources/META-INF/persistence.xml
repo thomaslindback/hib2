@@ -47,6 +47,7 @@
         <class>org.teel.arende2.Arende</class>
         <class>org.teel.arende2.Dok</class>
         <class>org.teel.arende2.Hand</class>
+        <class>org.teel.arende2.Bes</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mybookDB"/>

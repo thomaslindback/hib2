@@ -12,11 +12,11 @@ import java.util.List;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "zeel_dok")
+@Table(name = "zeel_bes")
 //@XmlJavaTypeAdapter(ObjectWrapperAdapter.class)
-public class Dok {
+public class Bes {
 
-    @OneToMany(targetEntity = Hand.class, cascade = CascadeType.ALL, mappedBy = "dok")
+    @OneToMany(targetEntity = Hand.class, cascade = CascadeType.ALL, mappedBy = "bes")
     @LazyCollection(LazyCollectionOption.FALSE)
     @XmlIDREF
     @XmlAttribute
