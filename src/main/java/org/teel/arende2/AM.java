@@ -203,7 +203,7 @@ public class AM {
 
     static class Cntr {
         private static final Cntr i = new Cntr();
-        private static int n = 300;
+        private static int n = 400;
 
         public static Cntr inst() {
             return i;
