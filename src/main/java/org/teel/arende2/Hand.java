@@ -32,7 +32,7 @@ public class Hand {
 
     @XmlID
     @XmlAttribute
-    private String xid;
+    private String hid;
 
     public Long getId() {
         return id;
@@ -58,12 +58,12 @@ public class Hand {
         this.dok = dok;
     }
 
-    public String getXid() {
-        return xid;
+    public String getHid() {
+        return hid;
     }
 
-    public void setXid(String xid) {
-        this.xid = xid;
+    public void setHid(String hid) {
+        this.hid = hid;
     }
 
     public Bes getBes() {

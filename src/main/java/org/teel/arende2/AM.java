@@ -27,7 +27,7 @@ public class AM {
         a.setTitle("arende");
         Hand h = new Hand();
         h.setDescription("SKAPAT");
-        h.setXid(Long.toString(Cntr.inst().n()));
+        h.setHid(Long.toString(Cntr.inst().n()));
         a.getHand().add(h);
         return a;
     }
@@ -35,7 +35,7 @@ public class AM {
     public void kopplaDok(Arende a, String dokname, long dokid) {
         Hand h = new Hand();
         h.setDescription("NYTT DOK");
-        h.setXid(Long.toString(Cntr.inst().n()));
+        h.setHid(Long.toString(Cntr.inst().n()));
 
         Dok d = new Dok();
         d.setName(dokname);
@@ -52,7 +52,7 @@ public class AM {
     public void kopplaBes(Arende a, String dokname, long dokid) {
         Hand h = new Hand();
         h.setDescription("NYTT BES");
-        h.setXid(Long.toString(Cntr.inst().n()));
+        h.setHid(Long.toString(Cntr.inst().n()));
 
         Bes b = new Bes();
         b.setName(dokname);
@@ -69,7 +69,7 @@ public class AM {
     public void addHandelseToDok(Arende a) {
         Hand h = new Hand();
         h.setDescription("DOK VALIDATED");
-        h.setXid(Long.toString(Cntr.inst().n()));
+        h.setHid(Long.toString(Cntr.inst().n()));
         //h.setRid(Long.toString(System.currentTimeMillis()));
         a.getHand().add(h);
         for (Dok d : a.getDok()) {
@@ -82,7 +82,7 @@ public class AM {
     public void addHandelseToBes(Arende a) {
         Hand h = new Hand();
         h.setDescription("BES VALIDATED");
-        h.setXid(Long.toString(Cntr.inst().n()));
+        h.setHid(Long.toString(Cntr.inst().n()));
         //h.setRid(Long.toString(System.currentTimeMillis()));
         a.getHand().add(h);
         for (Bes b : a.getBes()) {
